@@ -277,7 +277,7 @@
   ansible.builtin.apt_repository:
     repo: >-
       deb [arch={{ ansible_architecture }} signed-by=/etc/apt/keyrings/docker.gpg]
-      https://download.docker.com/linux/debian {{ debian_name }} stable
+      https://download.docker.com/linux/debian trixie stable
     state: present
     filename: docker
   when: |
