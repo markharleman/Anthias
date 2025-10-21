@@ -275,7 +275,9 @@
 
 - name: Set up Docker repository (Raspberry Pi)
   ansible.builtin.apt_repository:
-    repo: "deb [arch={{ ansible_architecture }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian {{ debian_name.stdout }} stable"
+    repo: >-
+      deb [arch={{ ansible_architecture }} signed-by=/etc/apt/keyrings/docker.gpg]
+      https://download.docker.com/linux/debian {{ debian_name }} stable
     state: present
     filename: docker
   when: |
