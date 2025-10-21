@@ -257,33 +257,33 @@
       - docker-compose
     state: absent
 
-- name: Add Docker apt key (x86)
-  ansible.builtin.apt_key:
-    url: https://download.docker.com/linux/debian/gpg
-    state: present
-  when: ansible_architecture == "x86_64"
+# - name: Add Docker apt key (x86)
+#   ansible.builtin.apt_key:
+#     url: https://download.docker.com/linux/debian/gpg
+#     state: present
+#   when: ansible_architecture == "x86_64"
 
-- name: Add Docker apt key (Raspberry Pi)
-  ansible.builtin.get_url:
-    url: https://download.docker.com/linux/debian/gpg
-    dest: /etc/apt/keyrings/docker.gpg
-    mode: '0644'
-  when: |
-    ansible_architecture == "aarch64" or
-    ansible_architecture == "armv7l" or
-    ansible_architecture == "armv6l"
+# - name: Add Docker apt key (Raspberry Pi)
+#   ansible.builtin.get_url:
+#     url: https://download.docker.com/linux/debian/gpg
+#     dest: /etc/apt/keyrings/docker.gpg
+#     mode: '0644'
+#   when: |
+#     ansible_architecture == "aarch64" or
+#     ansible_architecture == "armv7l" or
+#     ansible_architecture == "armv6l"
 
-- name: Set up Docker repository (Raspberry Pi)
-  ansible.builtin.apt_repository:
-    repo: >-
-      deb [arch={{ ansible_architecture }} signed-by=/etc/apt/keyrings/docker.gpg]
-      https://download.docker.com/linux/debian trixie stable
-    state: present
-    filename: docker
-  when: |
-    ansible_architecture == "aarch64" or
-    ansible_architecture == "armv7l" or
-    ansible_architecture == "armv6l"
+# - name: Set up Docker repository (Raspberry Pi)
+#   ansible.builtin.apt_repository:
+#     repo: >-
+#       deb [arch={{ ansible_architecture }} signed-by=/etc/apt/keyrings/docker.gpg]
+#       https://download.docker.com/linux/debian trixie stable
+#     state: present
+#     filename: docker
+#   when: |
+#     ansible_architecture == "aarch64" or
+#     ansible_architecture == "armv7l" or
+#     ansible_architecture == "armv6l"
 
 - name: Get Debian name
   ansible.builtin.command: lsb_release -cs
